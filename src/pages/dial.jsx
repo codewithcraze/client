@@ -3,43 +3,20 @@ import { Container, TextField, Button, Select, MenuItem, InputLabel, FormControl
 import { useDispatch, useSelector } from 'react-redux';
 import { sendDialData } from '../store/actions/dial.action'; 
 import CountryCodeSelector from "../components/CountryCodeSelector";
-import { Device } from '@twilio/voice-sdk';
 
 const DialNumber = () => {
     const dispatch = useDispatch();
     const loading = useSelector((state) => state.api.loading);
+    const data = useSelector((state) => state.api.data);
     const [countryCode, setCountryCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [category, setCategory] = useState('direct-call');
     const [openDialog, setOpenDialog] = useState(false);
     const [messageText, setMessageText] = useState('');
-    const [device, setDevice] = useState(null);
     
-    // useEffect(() => {
-    //     const fetchToken = async () => {
-    //         try {
-    //             const response = await fetch('/token');
-    //             const data = await response.json();
-    //             const newDevice = new Device(data.token);
+  
 
-    //             newDevice.on('incoming', connection => {
-    //                 connection.accept(); // Automatically accept incoming calls
-    //             });
-
-    //             setDevice(newDevice);
-    //         } catch (error) {
-    //             console.error('Error fetching Twilio token:', error);
-    //         }
-    //     };
-
-    //     fetchToken();
-
-    //     return () => {
-    //         if (device) {
-    //             device.disconnectAll();
-    //         }
-    //     };
-    // }, []);
+    console.log(data);
 
     const handleSubmit = (e) => {
         e.preventDefault();

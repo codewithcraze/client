@@ -10,6 +10,7 @@ const apiDialReducer = createSlice({
     initialState: {
         loading: false,
         error: null,
+        data: null
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -17,9 +18,11 @@ const apiDialReducer = createSlice({
             .addCase(sendDialData.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+
             })
             .addCase(sendDialData.fulfilled, (state) => {
                 state.loading = false;
+                state.data = action.payload
             })
             .addCase(sendDialData.rejected, (state, action) => {
                 state.loading = false;
